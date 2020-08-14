@@ -37,7 +37,9 @@ puts "Welcome ".white + "#{player_two.current_user}".green +  " your symbol is O
 
 puts "#{player_one.current_user}".red + " mark your X in a number".white
 puts grid(board)
-pl_one_x = gets.chomp.to_i
+pl_one_x = gets.chomp.to_s
+
+
 
 if (1..9).any?(pl_one_x) #match board && !"X" || "O"
     board[pl_one_x - 1] = "X"
@@ -85,3 +87,19 @@ count
 else win? 
     retunt winer
 =end
+
+
+#logica macro
+=begin
+2 jugadores (inicializar)
+1 tablero que se actualiza con cada jugada si valid moove(ligica micro) es verdad y no winner (logica micro) y no sea mayor a 9
+reiniciar tablero
+
+logica micro
+iniciar jugadores( nombre ) y asignamos X o O
+mostrar tablero
+pedimos jugada
+valid moove si no input invalido y pide nuevamente
+            si es valida actualizamos tablero 
+            y cambia jugador se repite 9 veces o hasta que winer = true
+
