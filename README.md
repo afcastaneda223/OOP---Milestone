@@ -1,4 +1,4 @@
-# [HTML & CSS capstone project: Directory of Restaurants
+# [OOP Tick Tack Toe Project]
 
 > 
 
@@ -10,15 +10,20 @@
 
 ## Built With
 
-- HTML,
-- CSS,
+Ruby
 
 ## GitHub Repo
 
--  https://github.com/afcastaneda223/
+-  https://github.com/afcastaneda223/OOP---Milestone/tree/master
 
 
 ## Author
+
+👤 **Andres Felipe Castañeda Ramos**
+
+- Github: [@afcastaneda223](https://github.com/afcastaneda223)
+- Twitter: [@afcastaneda](https://twitter.com/afcastaneda)
+- Linkedin: [Andres Felipe Castañeda](www.linkedin.com/in/andres-castaneda223)
 
 👤 **Andres Felipe Castañeda Ramos**
 
