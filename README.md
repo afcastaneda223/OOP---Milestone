@@ -2,7 +2,7 @@
 
 > 
 
-![screenshot](./assets/.png)
+
 
 ## Live link
 
@@ -25,11 +25,11 @@ Ruby
 - Twitter: [@afcastaneda](https://twitter.com/afcastaneda)
 - Linkedin: [Andres Felipe Castañeda](www.linkedin.com/in/andres-castaneda223)
 
-👤 **Andres Felipe Castañeda Ramos**
+👤 **Rocio Martinez**
 
-- Github: [@afcastaneda223](https://github.com/afcastaneda223)
-- Twitter: [@afcastaneda](https://twitter.com/afcastaneda)
-- Linkedin: [Andres Felipe Castañeda](www.linkedin.com/in/andres-castaneda223)
+- Github: [@Rocio01](https://github.com/Rocio01)
+- Twitter: [@rugiada8801](https://twitter.com/rugiada8801)
+- Linkedin: [zulma-martinez-5247a31a8](https://www.linkedin.com/in/zulma-martinez-5247a31a8/)
 
 
 ## Show your support
