@@ -3,7 +3,7 @@ require 'colorize'
 class Interface
 
     @board = %w[1 2 3 4 5 6 7 8 9]
-    @counter = 9
+    @counter = 0
 
     def grid(board)
         puts "#{board[0]} | #{board[1]} | #{board[2]}"
@@ -34,7 +34,7 @@ class Interface
     end
 
     def valid_move 
-    validate(gets.chomp) || try_again
+    validate(gets.chomp).to_i || try_again
     end
 
     def update_board
@@ -63,13 +63,16 @@ class Interface
     result
     end
 
-    def win
-    WIN_COMBINATIONS.each do |w|
-        true if (x[w[0]] == x[w[1]]) && (x[w[1]] == x[w[2]])
-            end
-        false
-        end
+    def win(x)
+        result = false
+      WIN_COMBINATIONS.each do |w|
+        if (x[w[0]] == x[w[1]]) && (x[w[1]] == x[w[2]])
+            result = true
+        end   
+      end
+        result
     end
+
     def tie
         if @counter == 9
             puts "Its a tie, try again!".white
