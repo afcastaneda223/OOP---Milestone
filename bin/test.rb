@@ -44,26 +44,30 @@ def game
               
   # end
 
-  @tie_counter = 0  
+@tie_counter = 0
+
+def tie
+  @tie_counter == 9 
+  return puts "Tie game"
+end 
+  
 def play    
-      while  @tie_counter < 9 
+    while  @tie_counter < 9 
         puts @board
       if !win && valid_move.is_a? (Numeric)
-        if @tie_counter == 8 
-        return puts "Tie game"
-        elsif @tie_counter.even?
+        
+          if @tie_counter.even?
              board[valid_move - 1] = "X".red
              tie_counter += 1
-        elsif @tie_counter.odd?              
+          else @tie_counter.odd?              
              board[valid_move - 1] = "O".green
              tie_counter += 1
         end
       else  win 
-          return winners
-        
+          return winners        
         end
-            end
-          end
+      end
+    end
 end
 puts valid_move
 
