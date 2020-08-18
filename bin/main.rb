@@ -103,3 +103,6 @@ valid moove si no input invalido y pide nuevamente
             si es valida actualizamos tablero 
             y cambia jugador se repite 9 veces o hasta que winer = true
 
+
+            al final de la jugada revisar si win si no cambia jugador si si print winer
+
