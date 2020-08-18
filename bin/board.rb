@@ -29,7 +29,7 @@ WIN_COMBINATIONS = [
   [0, 4, 8]
 ]
 
-def wins(x)
+def winers(x)
   result="No winner"
   WIN_COMBINATIONS.each do |w|
     if x[w[0]] == "X" && x[w[1]] == "X" && x[w[2]] == "X" 
@@ -41,4 +41,14 @@ def wins(x)
   return result
 end
    
+
+def win
+  WIN_COMBINATIONS.each do |w|
+    if (x[w[0]] == x[w[1]]) && (x[w[1]] == x[w[2]])
+       true
+    end
+  end
+  false
+end
+
 puts wins(board)
