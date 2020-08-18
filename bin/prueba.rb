@@ -29,6 +29,12 @@ end
 puts "Player X".red + " make your move".white
 puts grid(board)
 
-puts "#{player_one.current_user}".red +  " mark your X in a number".white
+puts "#{player_one.current_user}".red + ' mark your'.white ' X'.cyan ' in a number'.white
 
 pl_one_x = gets.chomp 
+
+if !tie  
+    while counter < 9
+        valid_move
+            
+

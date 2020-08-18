@@ -1,7 +1,9 @@
+require 'colorize'
+
 class Interface
 
     @board = %w[1 2 3 4 5 6 7 8 9]
-    @counter = 0
+    @counter = 9
 
     def grid(board)
         puts "#{board[0]} | #{board[1]} | #{board[2]}"
@@ -29,12 +31,25 @@ class Interface
     def try_again
         puts "Enter a valid move"
         valid_move
-        
     end
 
     def valid_move 
     validate(gets.chomp) || try_again
     end
+
+    def update_board
+        valid_move
+        if @counter.even? && valid_move.is_a?(Numeric)
+            puts "#{player_one.current_user}".cyan + ' mark your'.white ' X'.cyan ' in a number'.white
+            @board[valid_move - 1] = "X".cyan
+            @counter += 1
+        else @counter.odd? && valid_move.is_a?(Numeric)
+            puts "#{player_one.current_user}".red + ' mark your'.white ' O'.green ' in a number'.white
+            board[valid_move - 1] = "O".green
+            @counter += 1
+        end
+    end
+
 
     def winners(x)
     result = 'No winner'
@@ -55,4 +70,18 @@ class Interface
         false
         end
     end
+    def tie
+        if @counter == 9
+            puts "Its a tie, try again!".white
+            game
+        else
+            false
+        end
+    end
 end
+
+
+puts tie
+
+while counter < 9
+    update_board

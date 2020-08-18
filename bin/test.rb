@@ -61,7 +61,7 @@ def play (arg)
       if !win && valid_move.is_a? (Numeric)
         
           if @counter.even?
-             board[valid_move - 1] = "X".red
+             board[valid_move - 1] = "X".cyan
              @counter += 1
           else @counter.odd?              
              board[valid_move - 1] = "O".green
