@@ -21,47 +21,51 @@ end
 
 def game 
 
-  # def current_player
-  #   case  @tie_counter 
-  #   when 0
-  #     player_one
-  #   when 1
-  #     player_two
-  #   when 2
-  #     player_one
-  #   when 3
-  #     player_two
-  #   when 4
-  #     player_one
-  #   when 5
-  #     player_two
-  #   when 6
-  #     player_one
-  #   when 7
-  #     player_two
-  #   when 8
-  #     player_one
-              
-  # end
+  def current_player
+    
+    
+    case  Game
+    when  @counter == 0
+    puts "#{player_one.current_user}".red + " mark your X in a number".white
+      valid_move(gets.chomp)
 
-@tie_counter = 0
+    when 1
+      player_two
+    when 2
+      player_one
+    when 3
+      player_two
+    when 4
+      player_one
+    when 5
+      player_two
+    when 6
+      player_one
+    when 7
+      player_two
+    when 8
+      player_one
+              
+  end
+
+@counter = 0
 
 def tie
-  @tie_counter == 9 
+  @counter == 9 
   return puts "Tie game"
 end 
   
-def play    
-    while  @tie_counter < 9 
+def play (arg)   
+    while  @counter < 9 
         puts @board
       if !win && valid_move.is_a? (Numeric)
         
-          if @tie_counter.even?
+          if @counter.even?
              board[valid_move - 1] = "X".red
-             tie_counter += 1
-          else @tie_counter.odd?              
+             @counter += 1
+          else @counter.odd?              
              board[valid_move - 1] = "O".green
-             tie_counter += 1
+             @counter += 1
         end
       else  win 
           return winners        
@@ -73,3 +77,9 @@ puts valid_move
 
 
 
+class game
+    1. inicializar variables
+    2. 
+    ...
+
+play

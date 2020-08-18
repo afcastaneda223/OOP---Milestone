@@ -26,7 +26,7 @@ WIN_COMBINATIONS = [
   [2, 5, 8],
   [2, 4, 6],
   [0, 4, 8]
-].freeze
+]
 
 def winners(x)
   result = 'No winner'
