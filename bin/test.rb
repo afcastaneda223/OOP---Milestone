@@ -52,19 +52,55 @@ validate(gets.chomp) || try_again
 end
 
 def update_board
-    valid_move.to_i
-    if @counter.even? && valid_move.is_a?(Numeric)
-        puts "#{player_one.current_user}".cyan + ' mark your'.white + ' X'.cyan + ' in a number'.white
-        @board[valid_move - 1] = "X".cyan
+    if @counter.even?
+        puts "#{@player_one.current_user}".cyan + ' mark your'.white + ' X'.cyan + ' in a number'.white
+        @board[valid_move.to_i - 1] = "X".cyan
         @counter += 1
-        puts grid
-    else @counter.odd? && valid_move.is_a?(Numeric)
-        puts "#{player_one.current_user}".red + ' mark your'.white + ' O'.green + ' in a number'.white
-        board[valid_move - 1] = "O".green
+        puts print_board
+    else @counter.odd?
+        puts "#{@player_two.current_user}".red + ' mark your'.white + ' O'.green + ' in a number'.white
+        @board[valid_move.to_i - 1] = "O".green
         @counter += 1
-        puts grid
+        puts print_board
     end
     
 end
 
-puts update_board
+WIN_COMBINATIONS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [2, 4, 6],
+    [0, 4, 8]
+  ]
+
+def win(x)
+    result = false
+  WIN_COMBINATIONS.each do |w|
+    if (x[w[0]] == x[w[1]]) && (x[w[1]] == x[w[2]])
+        result = true
+    end   
+  end
+    result
+end
+
+
+while @counter < 10
+    if !win(@board)
+        puts update_board
+    elsif win(@board) 
+        if @counter.odd?
+            puts "#{@player_one.current_user}".cyan + " is the Winner!!".white
+            @counter = 10
+        elsif @counter.even?
+            puts "#{@player_two.current_user}".green + " is the Winner!!".white
+            @counter = 10
+        end
+    else @counter == 9
+        puts " Tie Game Start Again"
+        @counter = 10
+    end
+end
