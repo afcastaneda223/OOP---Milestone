@@ -40,11 +40,11 @@ class Interface
     def update_board
         valid_move
         if @counter.even? && valid_move.is_a?(Numeric)
-            puts "#{player_one.current_user}".cyan + ' mark your'.white ' X'.cyan ' in a number'.white
+            puts "#{player_one.current_user}".cyan + ' mark your'.white + ' X'.cyan +' in a number'.white
             @board[valid_move - 1] = "X".cyan
             @counter += 1
         else @counter.odd? && valid_move.is_a?(Numeric)
-            puts "#{player_one.current_user}".red + ' mark your'.white ' O'.green ' in a number'.white
+            puts "#{player_one.current_user}".red + ' mark your'.white + ' O'.green + ' in a number'.white
             board[valid_move - 1] = "O".green
             @counter += 1
         end
