@@ -25,3 +25,5 @@ class Interface
     validate(gets.chomp).to_i || try_again
     end
 end
+
+
