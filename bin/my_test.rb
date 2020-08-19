@@ -28,32 +28,28 @@ class Interface
     end
 end
 
+
 class Player
-    def initialize(name,symbol)
-        @name = name
-        @symbol = symbol
-        
+    def initialize(name, symbol)
+      @name = name
+      @symbol = symbol
     end
+  
     def current_user
-        @name
+      @name
     end
-
-    def welcome
-        puts "Welcome to Tic Tac Toe game".blue
-    end 
-      
-        puts "Please enter name for player X"
-        player_one =   Player.new(gets.chomp, "X")    
-
-      
-        puts "Please enter name for player O".green
-        player_two =  Player.new(gets.chomp, "O")
-    
-
-puts "Welcome ".white + "#{player_one.current_user}".red + " your symbol is X".white
-puts "Welcome ".white + "#{player_two.current_user}".green +  " your symbol is O".white
-
-end
+    puts 'Welcome to Tic Tac Toe game'.blue
+  
+    puts 'Please enter name for player X'.cyan
+    @player_one = Player.new(gets.chomp, 'X')
+  
+    puts 'Please enter name for player O'.green
+    @player_two = Player.new(gets.chomp, 'O')
+  
+    puts 'Welcome '.white + @player_one.current_user.to_s.cyan + ' your symbol is'.white + ' X'.cyan
+    puts 'Welcome '.white + @player_two.current_user.to_s.green + ' your symbol is'.white + ' O'.green
+  end
+  
 
 class Controller
     
@@ -61,7 +57,7 @@ class Controller
     def update_board
         valid_move
         if @counter.even? && valid_move.is_a?(Numeric)
-            puts "#{player_one.current_user}".cyan + ' mark your'.white + ' X'.cyan +' in a number'.white
+            puts "#{player_one.current_user}".cyan + ' mark your'.white + ' X'.cyan + ' in a number'.white
             @board[valid_move - 1] = "X".cyan
             @counter += 1
             puts grid
@@ -107,3 +103,5 @@ class Controller
             result
         end
 end
+
+puts grid(@board)
