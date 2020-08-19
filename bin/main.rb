@@ -6,7 +6,16 @@ require_relative '../bin/interface.rb'
 
 
 class Game
-    Player
+    
+    def initialize
+        @player = Player.new
+        @interface = Interface.new
+        @controller = Controller.new
+    end
+
+  
+ 
+
 end
 =begin
 

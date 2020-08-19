@@ -1,16 +1,30 @@
 require 'colorize'
 
-class Interface
-
-    @board = %w[1 2 3 4 5 6 7 8 9]
-
-    def grid(board)
-        puts "#{board[0]} | #{board[1]} | #{board[2]}"
-        puts "---------"
-        puts "#{board[3]} | #{board[4]} | #{board[5]}"
-        puts "---------"
-        puts "#{board[6]} | #{board[7]} | #{board[8]}"
+ class Interface
+   
+    def initialize(board)
+        @board = board      
     end
+    board = %w[1 2 3 4 5 6 7 8 9]
+    def grid(x)
+        puts "#{x[0]} | #{x[1]} | #{x[2]}"
+        puts "---------"
+        puts "#{x[3]} | #{x[4]} | #{x[5]}"
+        puts "---------"
+        puts "#{x[6]} | #{x[7]} | #{x[8]}"
+    end
+
+    def current_board
+        grid(@board)
+    end
+    @display_board = Interface.new(board)
+
+    puts  @display_board.current_board
+    
+
+
+   
+    
 
     def validate (player_move)
         @board.detect{|x| x == player_move.to_s}
@@ -24,6 +38,9 @@ class Interface
     def valid_move 
     validate(gets.chomp).to_i || try_again
     end
-end
+    puts grid(@board) 
+ end
+ 
+
 
 
