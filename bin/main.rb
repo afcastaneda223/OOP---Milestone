@@ -7,16 +7,23 @@ require_relative '../bin/interface.rb'
 
 class Game
     
-    def initialize
-        @player = Player.new
-        @interface = Interface.new
-        @controller = Controller.new
-    end
-
-  
- 
+    puts '****************************'.blue
+    puts 'Welcome to Tic Tac Toe game'.blue
+    puts '****************************'.blue
+    puts  " "
+    puts 'Please enter name for player X'.cyan
+    puts  " "
+    @player_one = Player.new(gets.chomp)
+    puts 'Please enter name for player O'.green
+    puts  " "
+    @player_two = Player.new(gets.chomp)
+    puts  " "
+    puts 'Welcome '.white + @player_one.current_user.cyan + ' your symbol is'.white + ' X'.cyan
+    puts " "
+    puts 'Welcome '.white + @player_two.current_user.green + ' your symbol is'.white + ' O'.green
 
 end
+
 =begin
 
 # if move is valid return  change of player else return 
