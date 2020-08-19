@@ -1,11 +1,13 @@
 #!/usr/bin/env ruby
 require 'colorize'
-require_relative '../bin/controler.rb'
+require_relative '../bin/controller.rb'
 require_relative '../bin/player.rb'
 require_relative '../bin/interface.rb'
 
 
-
+class Game
+    Player
+end
 =begin
 
 # if move is valid return  change of player else return 
@@ -52,3 +54,4 @@ valid moove si no input invalido y pide nuevamente
 
             al final de la jugada revisar si win si no cambia jugador si si print winer
 
+=end
