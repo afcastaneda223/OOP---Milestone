@@ -89,18 +89,18 @@ end
 
 
 while @counter < 10
-    if !win(@board)
+    if @counter == 9
+        puts " Tie Game Start Again"
+        @counter = 10
+    elsif !win(@board)
         puts update_board
     elsif win(@board) 
         if @counter.odd?
             puts "#{@player_one.current_user}".cyan + " is the Winner!!".white
             @counter = 10
-        elsif @counter.even?
+        else @counter.even?
             puts "#{@player_two.current_user}".green + " is the Winner!!".white
             @counter = 10
         end
-    else @counter == 9
-        puts " Tie Game Start Again"
-        @counter = 10
     end
 end
