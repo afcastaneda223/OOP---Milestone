@@ -8,5 +8,7 @@ class Player
   def current_user
     @name
   end
+
+
 end
 
