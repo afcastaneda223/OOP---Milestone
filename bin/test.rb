@@ -55,12 +55,12 @@ def update_board
     puts @player_one.current_user.to_s.cyan + ' mark your'.white + ' X'.cyan + ' in a number'.white
     @board[valid_move.to_i - 1] = 'X'.cyan
     @counter += 1
-    puts print_board
+    print_board
   else @counter.odd?
        puts @player_two.current_user.to_s.green + ' mark your'.white + ' O'.green + ' in a number'.white
        @board[valid_move.to_i - 1] = 'O'.green
        @counter += 1
-       puts print_board
+       print_board
   end
 end
 
