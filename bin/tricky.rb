@@ -1,12 +1,12 @@
 require "colorize"
 require "artii" 
 
-class Player
-    attr_accessor :name
+
+class Player 
+  attr_accessor :name
     def initialize(name)
         @name = name            
-    end
-   
+    end 
 
     arter = Artii::Base.new
     puts arter.asciify("TIC TAC TOE")
@@ -25,6 +25,7 @@ class Player
     puts 'Welcome '.white + @player_two.name.green+ ' your symbol is'.white + ' O'.green
     puts ' ' 
     puts "PLAY TIME" 
+  
 end
 
 class Board
@@ -104,7 +105,6 @@ end
 
 class Game < Controller
  
-  
    def play
     while @counter < 10 
         if @counter == 9 && !win(board)
