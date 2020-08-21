@@ -17,11 +17,11 @@ class Player
   puts ' '
   @player_two = Player.new(gets.chomp)
   puts ' '
-  puts 'PLAYERS INFO'
+  puts 'PLAYERS INFO'.red
   puts ' '
   puts 'Welcome '.white + @player_one.name.cyan + ' you are'.white + ' Player X'.cyan
   puts ' '
   puts 'Welcome '.white + @player_two.name.green + ' you are'.white + ' Player O'.green
   puts ' '
-  puts 'PLAY TIME'
+  puts 'PLAY TIME'.red
 end
