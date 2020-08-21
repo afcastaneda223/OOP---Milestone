@@ -63,16 +63,16 @@ class Controller < Board
       
       def update_board
         
-        if counter.even?
+        if @counter.even?
           puts " "
           puts  'Mark your'.white + ' X'.cyan + ' in a number from 1 to 9'.white
           board[valid_move.to_i - 1] = 'X'.cyan
-          counter += 1
+          @counter += 1
           puts grid
-        else counter.odd?
+        else @counter.odd?
           puts 'Mark your'.white + ' O'.green + ' in a number'.white
              board[valid_move.to_i - 1] = 'O'.green
-             counter += 1
+             @counter += 1
              puts grid
         end
       end
@@ -106,19 +106,19 @@ class Game < Controller
  
   
    def play
-    while counter < 10 
-        if counter == 9 && !win(board)
+    while @counter < 10 
+        if @counter == 9 && !win(board)
           puts ' TIE, Start again'
-          counter = 10
+          @counter = 10
         elsif !win(board)
           puts update_board
         elsif win(board)
-          if counter.odd?
+          if @counter.odd?
             puts "Player X".cyan + ' is the Winner!!'.white
-            counter = 10
-          elsif counter.even?
+            @counter = 10
+          elsif @counter.even?
                puts "Player O".green + ' is the Winner!!'.white
-               counter = 10
+               @counter = 10
           end
         end
       end
