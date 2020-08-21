@@ -1,12 +1,10 @@
 local_dir = File.expand_path('../', __FILE__)
 $LOAD_PATH.unshift(local_dir)
-
 require "main.rb"
 require "board.rb"
 require "controller.rb"
 require "colorize"
 require "artii"
-
 
 class Game < Controller
  
