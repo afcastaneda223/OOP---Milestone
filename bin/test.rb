@@ -1,13 +1,12 @@
 #!/usr/bin/env ruby
 require 'colorize'
 require 'artii'
-require_relative '../bin/controller.rb'
-require_relative '../bin/player.rb'
-require_relative '../bin/interface.rb'
+# require_relative '../bin/controller.rb'
+ require_relative '../bin/player.rb'
+# require_relative '../bin/interface.rb'
 
-puts '****************************'.blue
-puts 'Welcome to Tic Tac Toe game'.blue
-puts '****************************'.blue
+arter = Artii::Base.new
+puts arter.asciify("TIC TAC TOE")
 puts ' '
 puts 'Please enter name for player X'.cyan
 puts ' '

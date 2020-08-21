@@ -1,67 +1,81 @@
-require 'colorize'
-
-class Interface
-  @board = %w[1 2 3 4 5 6 7 8 9]
-
-  def grid(board)
-    puts "#{board[0]} | #{board[1]} | #{board[2]}"
-    puts '---------'
-    puts "#{board[3]} | #{board[4]} | #{board[5]}"
-    puts '---------'
-    puts "#{board[6]} | #{board[7]} | #{board[8]}"
-  end
-
-  def validate(player_move)
-    @board.detect { |x| x == player_move.to_s }
-  end
-
-  def try_again
-    puts 'Enter a valid move'
-    valid_move
-  end
-
-  def valid_move
-    validate(gets.chomp).to_i || try_again
-  end
-end
+require "colorize"
+require "artii"
 
 class Player
-  def initialize(name, symbol)
+  def initialize(name)
     @name = name
-    @symbol = symbol
   end
 
   def current_user
     @name
   end
-  puts 'Welcome to Tic Tac Toe game'.blue
 
-  puts 'Please enter name for player X'.cyan
-  @player_one = Player.new(gets.chomp, 'X')
+arter = Artii::Base.new
+puts arter.asciify("TIC TAC TOE")
+puts ' '
+puts 'Please enter name for player X'.cyan
+puts ' '
+@player_one = Player.new(gets.chomp)
+puts 'Please enter name for player O'.green
+puts ' '
+@player_two = Player.new(gets.chomp)
+puts ' '
+puts 'Welcome '.white + @player_one.current_user.cyan + ' your symbol is'.white + ' X'.cyan
+puts ' '
+puts 'Welcome '.white + @player_two.current_user.green + ' your symbol is'.white + ' O'.green
 
-  puts 'Please enter name for player O'.green
-  @player_two = Player.new(gets.chomp, 'O')
 
-  puts 'Welcome '.white + @player_one.current_user.to_s.cyan + ' your symbol is'.white + ' X'.cyan
-  puts 'Welcome '.white + @player_two.current_user.to_s.green + ' your symbol is'.white + ' O'.green
+end
+
+class Controller < Player
+
+def initialize 
+  @board = %w[1 2 3 4 5 6 7 8 9]
+  @counter = 0
+end
+
+def grid(board)
+  puts ' '
+  puts "#{board[0]} | #{board[1]} | #{board[2]}"
+  puts '---------'
+  puts "#{board[3]} | #{board[4]} | #{board[5]}"
+  puts '---------'
+  puts "#{board[6]} | #{board[7]} | #{board[8]}"
+end
+
+  def print_board
+    puts grid(@board)
   end
-
-class Controller
-  def update_board
+  
+  
+  
+  def validate(player_move)
+    @board.detect { |x| x == player_move.to_s }
+  end
+  
+  def try_again
+    puts 'Enter a valid move'
     valid_move
-    if @counter.even? && valid_move.is_a?(Numeric)
-      puts player_one.current_user.to_s.cyan + ' mark your'.white + ' X'.cyan + ' in a number'.white
-      @board[valid_move - 1] = 'X'.cyan
+  end
+  
+  def valid_move
+    validate(gets.chomp) || try_again
+  end
+  
+  def update_board
+    if @counter.even?
+      puts @player_one.current_user.to_s.cyan + ' mark your'.white + ' X'.cyan + ' in a number'.white
+      @board[valid_move.to_i - 1] = 'X'.cyan
       @counter += 1
-      puts grid
-    else @counter.odd? && valid_move.is_a?(Numeric)
-         puts player_one.current_user.to_s.red + ' mark your'.white + ' O'.green + ' in a number'.white
-         board[valid_move - 1] = 'O'.green
+      print_board
+    else @counter.odd?
+         puts @player_two.current_user.to_s.green + ' mark your'.white + ' O'.green + ' in a number'.white
+         @board[valid_move.to_i - 1] = 'O'.green
          @counter += 1
-         puts grid
+         print_board
     end
   end
-
+  
   WIN_COMBINATIONS = [
     [0, 1, 2],
     [3, 4, 5],
@@ -72,19 +86,7 @@ class Controller
     [2, 4, 6],
     [0, 4, 8]
   ].freeze
-
-  def winners(x)
-    result = 'No winner'
-    WIN_COMBINATIONS.each do |w|
-      if x[w[0]] == 'X' && x[w[1]] == 'X' && x[w[2]] == 'X'
-        result = 'Player X wins'
-      elsif x[w[0]] == 'O' && x[w[1]] == 'O' && x[w[2]] == 'O'
-        result = 'Player O wins'
-      end
-    end
-    result
-      end
-
+  
   def win(x)
     result = false
     WIN_COMBINATIONS.each do |w|
@@ -93,14 +95,28 @@ class Controller
     result
   end
 
-  def tie
-    if @counter == 9
-      puts 'Its a tie, try again!'.white
-      game
-    else
-      false
+    while @counter < 10
+      if @counter == 9
+        puts ' Tie Game Start Again'
+        @counter = 10
+      elsif !win(@board)
+        puts update_board
+      elsif win(@board)
+        if @counter.odd?
+          puts @player_one.current_user.to_s.cyan + ' is the Winner!!'.white
+          @counter = 10
+        else @counter.even?
+             puts @player_two.current_user.to_s.green + ' is the Winner!!'.white
+             @counter = 10
+        end
+      end
     end
-end
+  
 end
 
-puts grid(@board)
+
+
+juego = Game.new
+puts juego.play
+
+
