@@ -94,9 +94,9 @@ end
     end
     result
   end
-
+class Game
     while @counter < 10
-      if @counter == 9
+      if @counter == 9 && !win(@board)
         puts ' Tie Game Start Again'
         @counter = 10
       elsif !win(@board)

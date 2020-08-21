@@ -108,7 +108,7 @@ class Game < Controller
   
    def play
     while @counter < 10 
-        if @counter == 9
+        if @counter == 9 && !win(@board)
           puts ' TIE, Start again'
           @counter = 10
         elsif !win(@board)
