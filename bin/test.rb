@@ -54,12 +54,10 @@ def update_board
     puts @player_one.current_user.to_s.cyan + ' mark your'.white + ' X'.cyan + ' in a number'.white
     @board[valid_move.to_i - 1] = 'X'.cyan
     @counter += 1
-    print_board
-  else @counter.odd?
-       puts @player_two.current_user.to_s.green + ' mark your'.white + ' O'.green + ' in a number'.white
-       @board[valid_move.to_i - 1] = 'O'.green
-       @counter += 1
-       print_board
+  elsif @counter.odd?
+    puts @player_two.current_user.to_s.green + ' mark your'.white + ' O'.green + ' in a number'.white
+    @board[valid_move.to_i - 1] = 'O'.green
+    @counter += 1
   end
 end
 
@@ -74,10 +72,10 @@ WIN_COMBINATIONS = [
   [0, 4, 8]
 ].freeze
 
-def win(x)
+def win(arg)
   result = false
   WIN_COMBINATIONS.each do |w|
-    result = true if (x[w[0]] == x[w[1]]) && (x[w[1]] == x[w[2]])
+    result = true if (arg[w[0]] == arg[w[1]]) && (arg[w[1]] == arg[w[2]])
   end
   result
 end
@@ -88,13 +86,14 @@ while @counter < 10
     @counter = 10
   elsif !win(@board)
     puts update_board
+    print_board
   elsif win(@board)
     if @counter.odd?
       puts @player_one.current_user.to_s.cyan + ' is the Winner!!'.white
       @counter = 10
-    else @counter.even?
-         puts @player_two.current_user.to_s.green + ' is the Winner!!'.white
-         @counter = 10
+    elsif @counter.even?
+      puts @player_two.current_user.to_s.green + ' is the Winner!!'.white
+      @counter = 10
     end
   end
 end
