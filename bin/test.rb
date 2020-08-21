@@ -2,11 +2,11 @@
 require 'colorize'
 require 'artii'
 # require_relative '../bin/controller.rb'
- require_relative '../bin/player.rb'
+require_relative '../bin/player.rb'
 # require_relative '../bin/interface.rb'
 
 arter = Artii::Base.new
-puts arter.asciify("TIC TAC TOE")
+puts arter.asciify('TIC TAC TOE')
 puts ' '
 puts 'Please enter name for player X'.cyan
 puts ' '
