@@ -1,12 +1,8 @@
-# [OOP Tick Tack Toe Project]
+# [OOP TIC TAC TOE ]
 
-> 
+- In this project, we built a Tic Tac Toe game. The main goal is to put into practice the main concepts of Object Oriented Programming. Particularly, classes and access to their attributes.
 
-![screenshot](./assets/.png)
-
-## Live link
-
-- https://raw.githack.com/
+ 
 
 ## Built With
 
@@ -39,6 +35,8 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - Microverse
+- Ruby
+- The Odin project
 
 ## 📝 License
 
