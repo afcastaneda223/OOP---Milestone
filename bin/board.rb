@@ -1,6 +1,3 @@
-require 'colorize'
-require 'artii'
-
 class Board
   attr_accessor :board, :counter
   def initialize
