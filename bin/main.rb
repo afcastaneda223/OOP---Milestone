@@ -2,15 +2,11 @@ local_dir = File.expand_path(__dir__)
 $LOAD_PATH.unshift(local_dir)
 
 require 'board.rb'
+require 'Player'
 require 'colorize'
 require 'artii'
 
-class Player
-  attr_reader :name
-  def initialize(name)
-    @name = name
-  end
-
+class Welcome < Player
   arter = Artii::Base.new
   puts arter.asciify('TIC TAC TOE')
   puts 'Please enter name for player X'.cyan
