@@ -74,21 +74,24 @@ WIN_COMBINATIONS = [
 ].freeze
 
 def win(arg)
-  result = false
   WIN_COMBINATIONS.each do |w|
-    result = true if (arg[w[0]] == arg[w[1]]) && (arg[w[1]] == arg[w[2]])
+    return true if (arg[w[0]] == arg[w[1]]) && (arg[w[1]] == arg[w[2]])
   end
-  result
+  false
+end
+
+def winner
+  win(@board)
 end
 
 while @counter < 10
   if @counter == 9
     puts ' Tie Game Start Again'
     @counter = 10
-  elsif !win(@board)
+  elsif !winner
     puts update_board
     print_board
-  elsif win(@board)
+  elsif winner
     if @counter.odd?
       puts @player_one.current_user.to_s.cyan + ' is the Winner!!'.white
       @counter = 10
