@@ -2,7 +2,7 @@ local_dir = File.expand_path(__dir__)
 $LOAD_PATH.unshift(local_dir)
 
 require 'board.rb'
-require 'Player'
+require 'player.rb'
 require 'colorize'
 require 'artii'
 
