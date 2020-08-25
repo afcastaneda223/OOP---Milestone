@@ -4,9 +4,13 @@
 
 
 
-## Live link
+## Instructions
 
-- https://raw.githack.com/
+- Make a copy in your local enviroment(Clone the Git Repository)
+- Open this directory in your terminal   (OOP---Milestone/bin)
+- To run the game first install artii and colorize gems with this commands in your terminal
+($ gem install artii) ($ gem install colorize)
+- You are ready to play only run this command in your terminal(ruby main.rb) 
 
 ## Built With
 
