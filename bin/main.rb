@@ -1,8 +1,5 @@
-local_dir = File.expand_path(__dir__)
-$LOAD_PATH.unshift(local_dir)
-
-require 'board.rb'
-require 'player.rb'
+require_relative '../lib/board.rb'
+require_relative '../lib/player.rb'
 require 'colorize'
 require 'artii'
 
@@ -30,7 +27,7 @@ class Controller < Board
   private
 
   def validate(player_move)
-    board.detect { |x| x == player_move.to_s }
+    @board.detect { |x| x == player_move.to_s }
   end
 
   def try_again
@@ -47,11 +44,11 @@ class Controller < Board
       puts ' '
       puts 'Player X '.cyan + 'Choose a number from 1 to 9'.white
       puts ' '
-      board[valid_move.to_i - 1] = 'X'.cyan
+      @board[valid_move.to_i - 1] = 'X'.cyan
     elsif @counter.odd?
       puts 'Player O '.green + 'Choose a number from 1 to 9'.white
       puts ' '
-      board[valid_move.to_i - 1] = 'O'.green
+      @board[valid_move.to_i - 1] = 'O'.green
     end
     @counter += 1
     puts grid
@@ -83,12 +80,12 @@ end
 class Game < Controller
   def play
     while @counter < 10
-      if @counter == 9 && !win(board)
+      if @counter == 9 && !win(@board)
         puts ' TIE, Start again'
         @counter = 10
-      elsif !win(board)
+      elsif !win(@board)
         puts update_board
-      elsif win(board)
+      elsif win(@board)
         if @counter.odd?
           puts 'Player X'.cyan + ' is the Winner!!'.white
           @counter = 10
@@ -100,5 +97,6 @@ class Game < Controller
     end
   end
 end
+
 juego = Game.new
 juego.play
