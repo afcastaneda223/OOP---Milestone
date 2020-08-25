@@ -64,14 +64,10 @@ class Controller < Board
     [0, 4, 8]
   ].freeze
 
-  def win(item)
+  def win(arg)
     result = false
     WIN_COMBINATIONS.each do |w|
-      if item[w[0]] == 'X'.cyan && item[w[1]] == 'X'.cyan && item[w[2]] == 'X'.cyan
-        result = true
-      elsif item[w[0]] == 'O'.green && item[w[1]] == 'O'.green && item[w[2]] == 'O'.green
-        result = true
-      end
+      result = true if (arg[w[0]] == arg[w[1]]) && (arg[w[1]] == arg[w[2]])
     end
     result
   end
