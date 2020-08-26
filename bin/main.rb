@@ -70,7 +70,7 @@ class TicTacToe
   def play
     @my_greetings.welcome
     while @counter < 10
-      if @counter == 9
+      if @counter == 9 && !@my_logic.win(@my_board.board)
         puts @my_board.grid
         puts ' TIE GAME, Start again!'
         @counter = 10
