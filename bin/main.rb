@@ -64,8 +64,9 @@ class TicTacToe
     puts @my_board.grid
   end
 
+  public
+
   def play
-    public
     @my_greetings.welcome
     while @counter < 10
       if @counter == 9 && !@my_logic.win(my_board.board)
