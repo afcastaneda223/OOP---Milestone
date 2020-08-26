@@ -1,40 +1,43 @@
-local_dir = File.expand_path(__dir__)
-$LOAD_PATH.unshift(local_dir)
-
-require 'board.rb'
+require_relative '../lib/logic.rb'
+require_relative '../lib/player.rb'
+require_relative '../lib/board.rb'
 require 'colorize'
 require 'artii'
 
-class Player
-  attr_reader :name
-  def initialize(name)
-    @name = name
+class Greetings
+  def welcome
+    arter = Artii::Base.new
+    puts arter.asciify('TIC TAC TOE')
+    puts 'Please enter name for player X'.cyan
+    puts ' '
+    @player_one = Player.new(gets.chomp)
+    puts ' '
+    puts 'Please enter name for player O'.green
+    puts ' '
+    @player_two = Player.new(gets.chomp)
+    puts ' '
+    puts 'PLAYERS'.red
+    puts ' '
+    puts 'Welcome '.white + @player_one.name.cyan + ' you are'.white + ' Player X'.cyan
+    puts ' '
+    puts 'Welcome '.white + @player_two.name.green + ' you are'.white + ' Player O'.green
+    puts ' '
+    puts 'PLAY TIME'.red
   end
-
-  arter = Artii::Base.new
-  puts arter.asciify('TIC TAC TOE')
-  puts 'Please enter name for player X'.cyan
-  puts ' '
-  @player_one = Player.new(gets.chomp)
-  puts ' '
-  puts 'Please enter name for player O'.green
-  puts ' '
-  @player_two = Player.new(gets.chomp)
-  puts ' '
-  puts 'PLAYERS'.red
-  puts ' '
-  puts 'Welcome '.white + @player_one.name.cyan + ' you are'.white + ' Player X'.cyan
-  puts ' '
-  puts 'Welcome '.white + @player_two.name.green + ' you are'.white + ' Player O'.green
-  puts ' '
-  puts 'PLAY TIME'.red
 end
 
-class Controller < Board
+class TicTacToe
   private
 
+  def initialize
+    @my_board = Board.new
+    @my_logic = Logic.new
+    @counter = 0
+    @my_greetings = Greetings.new
+  end
+
   def validate(player_move)
-    board.detect { |x| x == player_move.to_s }
+    @my_board.board.detect { |x| x == player_move.to_s }
   end
 
   def try_again
@@ -51,48 +54,27 @@ class Controller < Board
       puts ' '
       puts 'Player X '.cyan + 'Choose a number from 1 to 9'.white
       puts ' '
-      board[valid_move.to_i - 1] = 'X'.cyan
+      @my_board.board[valid_move.to_i - 1] = 'X'.cyan
     elsif @counter.odd?
       puts 'Player O '.green + 'Choose a number from 1 to 9'.white
       puts ' '
-      board[valid_move.to_i - 1] = 'O'.green
+      @my_board.board[valid_move.to_i - 1] = 'O'.green
     end
     @counter += 1
-    puts grid
+    puts @my_board.grid
   end
-  WIN_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [2, 4, 6],
-    [0, 4, 8]
-  ].freeze
 
-  def win(item)
-    result = false
-    WIN_COMBINATIONS.each do |w|
-      if item[w[0]] == 'X'.cyan && item[w[1]] == 'X'.cyan && item[w[2]] == 'X'.cyan
-        result = true
-      elsif item[w[0]] == 'O'.green && item[w[1]] == 'O'.green && item[w[2]] == 'O'.green
-        result = true
-      end
-    end
-    result
-  end
-end
+  public
 
-class Game < Controller
   def play
+    @my_greetings.welcome
     while @counter < 10
-      if @counter == 9 && !win(board)
+      if @counter == 9 && !@my_logic.win(my_board.board)
         puts ' TIE, Start again'
         @counter = 10
-      elsif !win(board)
+      elsif !@my_logic.win(@my_board.board)
         puts update_board
-      elsif win(board)
+      elsif @my_logic.win(@my_board.board)
         if @counter.odd?
           puts 'Player X'.cyan + ' is the Winner!!'.white
           @counter = 10
@@ -104,5 +86,6 @@ class Game < Controller
     end
   end
 end
-juego = Game.new
+
+juego = TicTacToe.new
 juego.play

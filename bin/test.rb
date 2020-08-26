@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'colorize'
 require 'artii'
+<<<<<<< HEAD
 require_relative '../bin/controller.rb'
 require_relative '../bin/player.rb'
 require_relative '../bin/interface.rb'
@@ -8,6 +9,14 @@ require_relative '../bin/interface.rb'
 puts '****************************'.blue
 puts 'Welcome to Tic Tac Toe game'.blue
 puts '****************************'.blue
+=======
+# require_relative '../bin/controller.rb'
+# require_relative '../bin/player.rb'
+# require_relative '../bin/interface.rb'
+
+arter = Artii::Base.new
+puts arter.asciify('TIC TAC TOE')
+>>>>>>> fe7600586670fae4bce531bc83b6351d0cd42dc1
 puts ' '
 puts 'Please enter name for player X'.cyan
 puts ' '
@@ -74,6 +83,7 @@ WIN_COMBINATIONS = [
 ].freeze
 
 def win(arg)
+<<<<<<< HEAD
   WIN_COMBINATIONS.each do |w|
     return true if (arg[w[0]] == arg[w[1]]) && (arg[w[1]] == arg[w[2]])
   end
@@ -82,16 +92,30 @@ end
 
 def winner
   win(@board)
+=======
+  result = false
+  WIN_COMBINATIONS.each do |w|
+    result = true if (arg[w[0]] == arg[w[1]]) && (arg[w[1]] == arg[w[2]])
+  end
+  result
+>>>>>>> fe7600586670fae4bce531bc83b6351d0cd42dc1
 end
 
 while @counter < 10
   if @counter == 9
     puts ' Tie Game Start Again'
     @counter = 10
+<<<<<<< HEAD
   elsif !winner
     puts update_board
     print_board
   elsif winner
+=======
+  elsif !win(@board)
+    puts update_board
+    print_board
+  elsif win(@board)
+>>>>>>> fe7600586670fae4bce531bc83b6351d0cd42dc1
     if @counter.odd?
       puts @player_one.current_user.to_s.cyan + ' is the Winner!!'.white
       @counter = 10
