@@ -50,6 +50,8 @@ class TicTacToe
   end
 
   def update_board
+    puts @my_board.grid
+    puts ' '
     if @counter.even?
       puts ' '
       puts 'Player X '.cyan + 'Choose a number from 1 to 9'.white
@@ -61,7 +63,6 @@ class TicTacToe
       @my_board.board[valid_move.to_i - 1] = 'O'.green
     end
     @counter += 1
-    puts @my_board.grid
   end
 
   public
@@ -69,8 +70,9 @@ class TicTacToe
   def play
     @my_greetings.welcome
     while @counter < 10
-      if @counter == 9 && !@my_logic.win(my_board.board)
-        puts ' TIE, Start again'
+      if @counter == 9
+        puts @my_board.grid
+        puts ' TIE GAME, Start again!'
         @counter = 10
       elsif !@my_logic.win(@my_board.board)
         puts update_board
