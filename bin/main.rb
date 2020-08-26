@@ -63,7 +63,6 @@ class TicTacToe
       @my_board.board[valid_move.to_i - 1] = 'O'.green
     end
     @counter += 1
-    
   end
 
   public
