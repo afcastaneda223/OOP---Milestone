@@ -79,9 +79,11 @@ class TicTacToe
       elsif @my_logic.win(@my_board.board)
         if @counter.odd?
           puts 'Player X'.cyan + ' is the Winner!!'.white
+          puts @my_board.grid
           @counter = 10
         elsif @counter.even?
           puts 'Player O'.green + ' is the Winner!!'.white
+          puts @my_board.grid
           @counter = 10
         end
       end
