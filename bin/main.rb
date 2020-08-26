@@ -50,6 +50,8 @@ class TicTacToe
   end
 
   def update_board
+    puts @my_board.grid
+    puts ' '
     if @counter.even?
       puts ' '
       puts 'Player X '.cyan + 'Choose a number from 1 to 9'.white
@@ -61,7 +63,6 @@ class TicTacToe
       @my_board.board[valid_move.to_i - 1] = 'O'.green
     end
     @counter += 1
-    puts @my_board.grid
   end
 
   public
