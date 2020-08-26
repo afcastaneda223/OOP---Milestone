@@ -1,65 +1,108 @@
-#!/usr/bin/env ruby
-require 'colorize'
-require_relative '../bin/controller.rb'
-require_relative '../bin/player.rb'
-require_relative '../bin/interface.rb'
+local_dir = File.expand_path(__dir__)
+$LOAD_PATH.unshift(local_dir)
 
-class Game
-  puts '****************************'.blue
-  puts 'Welcome to Tic Tac Toe game'.blue
-  puts '****************************'.blue
-  puts ' '
+require 'board.rb'
+require 'colorize'
+require 'artii'
+
+class Player
+  attr_reader :name
+  def initialize(name)
+    @name = name
+  end
+
+  arter = Artii::Base.new
+  puts arter.asciify('TIC TAC TOE')
   puts 'Please enter name for player X'.cyan
   puts ' '
   @player_one = Player.new(gets.chomp)
+  puts ' '
   puts 'Please enter name for player O'.green
   puts ' '
   @player_two = Player.new(gets.chomp)
   puts ' '
-  puts 'Welcome '.white + @player_one.current_user.cyan + ' your symbol is'.white + ' X'.cyan
+  puts 'PLAYERS'.red
   puts ' '
-  puts 'Welcome '.white + @player_two.current_user.green + ' your symbol is'.white + ' O'.green
+  puts 'Welcome '.white + @player_one.name.cyan + ' you are'.white + ' Player X'.cyan
+  puts ' '
+  puts 'Welcome '.white + @player_two.name.green + ' you are'.white + ' Player O'.green
+  puts ' '
+  puts 'PLAY TIME'.red
 end
 
-#
-# if move is valid return  change of player else return
-# puts "Invalid move"
-#
-# Player change
-# puts "Player O".green + " make your move".white
-# puts grid(board)
-#
-# if move is valid return  change of player else return
-# puts "Invalid move"
-#
-# 1st move
-# other moves <=9
-# win?
-# valid?
-#
-# input de jugardor = (1..9) &&  bard.match(input)
-#
-#
-# while !win? valid?
-# count
-#     move
-#
-# else win?
-#     retunt winer
+class Controller < Board
+  private
 
-# logica macro
-# 2 jugadores (inicializar)
-# 1 tablero que se actualiza con cada jugada si valid moove(ligica micro) es verdad y no winner (logica micro) y no sea mayor a 9
-# reiniciar tablero
-#
-# logica micro
-# iniciar jugadores( nombre ) y asignamos X o O
-# mostrar tablero
-# pedimos jugada
-# valid moove si no input invalido y pide nuevamente
-#             si es valida actualizamos tablero
-#             y cambia jugador se repite 9 veces o hasta que winer = true
-#
-#
-#             al final de la jugada revisar si win si no cambia jugador si si print winer
-#
+  def validate(player_move)
+    board.detect { |x| x == player_move.to_s }
+  end
+
+  def try_again
+    puts 'Enter a valid move'
+    valid_move
+  end
+
+  def valid_move
+    validate(gets.chomp) || try_again
+  end
+
+  def update_board
+    if @counter.even?
+      puts ' '
+      puts 'Player X '.cyan + 'Choose a number from 1 to 9'.white
+      puts ' '
+      board[valid_move.to_i - 1] = 'X'.cyan
+    elsif @counter.odd?
+      puts 'Player O '.green + 'Choose a number from 1 to 9'.white
+      puts ' '
+      board[valid_move.to_i - 1] = 'O'.green
+    end
+    @counter += 1
+    puts grid
+  end
+  WIN_COMBINATIONS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [2, 4, 6],
+    [0, 4, 8]
+  ].freeze
+
+  def win(item)
+    result = false
+    WIN_COMBINATIONS.each do |w|
+      if item[w[0]] == 'X'.cyan && item[w[1]] == 'X'.cyan && item[w[2]] == 'X'.cyan
+        result = true
+      elsif item[w[0]] == 'O'.green && item[w[1]] == 'O'.green && item[w[2]] == 'O'.green
+        result = true
+      end
+    end
+    result
+  end
+end
+
+class Game < Controller
+  def play
+    while @counter < 10
+      if @counter == 9 && !win(board)
+        puts ' TIE, Start again'
+        @counter = 10
+      elsif !win(board)
+        puts update_board
+      elsif win(board)
+        if @counter.odd?
+          puts 'Player X'.cyan + ' is the Winner!!'.white
+          @counter = 10
+        elsif @counter.even?
+          puts 'Player O'.green + ' is the Winner!!'.white
+          @counter = 10
+        end
+      end
+    end
+  end
+end
+juego = Game.new
+juego.play
