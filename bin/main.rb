@@ -5,6 +5,7 @@ require 'colorize'
 require 'artii'
 
 class Greetings
+  attr_reader :player_one, :player_two
   def welcome
     arter = Artii::Base.new
     puts arter.asciify('TIC TAC TOE')
@@ -78,11 +79,11 @@ class TicTacToe
         puts update_board
       elsif @my_logic.win(@my_board.board)
         if @counter.odd?
-          puts 'Player X'.cyan + ' is the Winner!!'.white
+          puts 'Player X '.cyan + ' is the Winner!!'.white
           puts @my_board.grid
           @counter = 10
         elsif @counter.even?
-          puts 'Player O'.green + ' is the Winner!!'.white
+          puts 'Player O '.green + ' is the Winner!!'.white
           puts @my_board.grid
           @counter = 10
         end
