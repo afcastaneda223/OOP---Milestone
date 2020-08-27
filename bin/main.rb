@@ -55,11 +55,11 @@ class TicTacToe
     puts ' '
     if @counter.even?
       puts ' '
-      puts 'Player X '.cyan + 'Choose a number from 1 to 9'.white
+      puts @my_greetings.player_one.name.cyan + ' Choose a number from 1 to 9'.white
       puts ' '
       @my_board.board[valid_move.to_i - 1] = 'X'.cyan
     elsif @counter.odd?
-      puts 'Player O '.green + 'Choose a number from 1 to 9'.white
+      puts @my_greetings.player_two.name.green + ' Choose a number from 1 to 9'.white
       puts ' '
       @my_board.board[valid_move.to_i - 1] = 'O'.green
     end
@@ -79,11 +79,11 @@ class TicTacToe
         puts update_board
       elsif @my_logic.win(@my_board.board)
         if @counter.odd?
-          puts 'Player X '.cyan + ' is the Winner!!'.white
+          puts @my_greetings.player_one.name.cyan + ' is the Winner!!'.white
           puts @my_board.grid
           @counter = 10
         elsif @counter.even?
-          puts 'Player O '.green + ' is the Winner!!'.white
+          puts @my_greetings.player_two.name.green + ' is the Winner!!'.white
           puts @my_board.grid
           @counter = 10
         end
