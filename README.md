@@ -1,12 +1,16 @@
-# [OOP Tick Tack Toe Project]
+# [OOP TIC TAC TOE ]
 
-> 
+- In this project, we built a Tic Tac Toe game. The main goal is to put into practice the main concepts of Object Oriented Programming. Particularly, classes and access to their attributes.
 
 
 
-## Live link
+## Instructions
 
-- https://raw.githack.com/
+- Make a copy in your local enviroment(Clone the Git Repository)
+- Open this directory in your terminal   (OOP---Milestone/bin)
+- To run the game first install artii and colorize gems with this commands in your terminal
+($ gem install artii) ($ gem install colorize) but if you already have installed the gem bundler($ gem install bundler) only run bundler and you are ready.
+- You are ready to play only run this command in your terminal(ruby main.rb) if you are in (OOP---Milestone/bin) or (ruby bin/main.rb) if you are in (OOP---Milestone)
 
 ## Built With
 
@@ -39,6 +43,8 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - Microverse
+- Ruby
+- The Odin project
 
 ## 📝 License
 
